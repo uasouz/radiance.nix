@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+check() {
+	command -v "$1" 1>/dev/null
+}
+notify() {
+	if check notify-send; then
+		notify-send "$@"
+	else
+		echo "$@"
+	fi
+}
+
+if check hyprctl; then
+	hyprctl=true
+else
+	hyprctl=false
+	notify "Battery Saver" "hyprctl not found"
+fi
+
+if check cpupower; then
+	cpupower=true
+else
+	cpupower=false
+	notify "Battery Saver" "cpupower not found"
+fi
+
+# Available Governors array
+IFS=$' ' read -d '' -r -a governors </sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+
+# Remove the last element (empty space)
+# shellcheck disable=SC2184
+unset governors[${#governors[@]}-1]
+
+hyprctlSave() {
+	hyprctl --batch "\
+      keyword animations:enabled 0;\
+      keyword decoration:drop_shadow 0;\
+      keyword decoration:blur:enabled 0;\
+      keyword general:gaps_in 0;\
+      keyword general:gaps_out 0;\
+      keyword general:border_size 1;\
+      keyword decoration:rounding 0"
+}
+
+save() {
+	if $hyprctl; then
+		hyprctlSave
+	fi
+	notify "Battery Saver" "Switched to Saving Mode"
+}
+
+set_governor() {
+	if $cpupower; then
+		sudo cpupower --cpu all frequency-set -g "$1"
+	fi
+}
+
+getdata() {
+	state="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)"
+	text="<b></b>"
+	tooltip=""
+	class=$state
+
+	if $hyprctl; then
+		glory=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
+		tooltip+="<b>Hyprland:\n</b>"
+		[[ "$glory" -eq 1 ]] && glory="enabled" || glory="disabled"
+		tooltip+="  Glory Stuff: $glory\n"
+	fi
+
+	cat <<EOF
+  { "text": "$text", "tooltip" : "$tooltip", "class" : "$class" }
+EOF
+}
+
+menu() {
+	str=""
+	state="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)"
+
+	for i in "${governors[@]}"; do
+		if [[ "${i,,}" = "$state"* ]]; then
+			str+=" $i\n"
+		else
+			str+="$i\n"
+		fi
+	done
+	str=${str::-2}
+	echo -e "$str"
+
+	choice=$(echo -e "$str" | rofi -dmenu -i -l 3 -config ~/.config/rofi/menu.d/battery.rasi)
+	if [ -n "$choice" ]; then
+		set_governor "$choice"
+		if [ "$choice" = "powersave" ]; then
+			save
+		else
+			if $hyprctl; then
+				hyprctl reload
+			fi
+		fi
+		notify "Battery Saver" "Switched to $choice"
+	fi
+	pkill -SIGRTMIN+5 waybar
+}
+
+case "$1" in
+"menu")
+	menu
+	;;
+"getdata")
+	getdata
+	;;
+*)
+	echo "Usage: $0 {getdata|menu}"
+	exit 1
+	;;
+esac
