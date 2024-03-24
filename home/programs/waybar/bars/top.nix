@@ -284,14 +284,14 @@
     tooltip = true;
     "tooltip-format" = "Games running: {count}";
   };
-  "custom/github" = {
-    format = "{}";
-    "return-type" = "json";
-    interval = 3600;
-    signal = 9;
-    exec = "$HOME/.config/waybar/bin/github.sh";
-    "on-click" = "xdg-open https://github.com/notifications;pkill -RTMIN+9 waybar";
-  };
+#  "custom/github" = {
+#    format = "{}";
+#    "return-type" = "json";
+#    interval = 3600;
+#    signal = 9;
+#    exec = "$HOME/.config/waybar/bin/github.sh";
+#    "on-click" = "xdg-open https://github.com/notifications;pkill -RTMIN+9 waybar";
+#  };
   "custom/camera" = {
     format = "{} ";
     interval = "once";
