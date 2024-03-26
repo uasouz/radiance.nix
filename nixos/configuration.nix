@@ -108,7 +108,6 @@
       discord
       steam
       gparted
-      lunarvim
       hw-probe
       git
       alacritty

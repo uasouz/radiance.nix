@@ -20,6 +20,7 @@
     rustup
     lazygit
     jq
+    lunarvim
     appimage-run
     gcc
     nfs-utils

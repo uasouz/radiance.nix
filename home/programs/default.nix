@@ -3,5 +3,6 @@
 #    ./eww
     ./rofi
     ./waybar
+    ./lunarvim
   ];
 }
