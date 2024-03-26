@@ -20,7 +20,6 @@
     rustup
     lazygit
     jq
-    lunarvim
     appimage-run
     gcc
     nfs-utils
@@ -177,7 +176,7 @@ programs.alacritty = {
 
   programs.zsh = {
     initExtra = ''
-      [[ ! -f ${./.p10k.zsh} ]] || source ${./.p10k.zsh}
+      [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
     '';
     enable = true;
     enableCompletion = true;
