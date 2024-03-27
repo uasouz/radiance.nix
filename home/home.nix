@@ -18,6 +18,7 @@
     git
     curl
     rustup
+    rust
     rustc
     lazygit
     jq
