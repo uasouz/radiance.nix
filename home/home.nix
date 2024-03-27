@@ -18,6 +18,7 @@
     git
     curl
     rustup
+    rustc
     lazygit
     jq
     appimage-run
