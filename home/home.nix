@@ -69,6 +69,8 @@
          "$mod, R, exec, rofi -show drun"
          "$mod, F, exec, dolphin"
          "$mod, P, exec, hyprshot -m window"
+         "$mod, S, pin"
+         "$shiftMod, F, togglefloating"
          "$shiftMod, P, exec, hyprshot -m region"
          "$mod, left, movefocus, l"
          "$mod, right, movefocus, r"
