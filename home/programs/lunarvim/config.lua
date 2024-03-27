@@ -111,7 +111,7 @@ lvim.plugins = {
     -- cmd = { "Minimap", "MinimapClose", "MinimapToggle", "MinimapRefresh", "MinimapUpdateHighlight" },
     config = function()
       lvim.builtin.which_key.mappings["m"] = {
-        "<cmd>Minimap<CR>", "Minimap"
+        "<cmd>MinimapToggle<CR>", "Toggle Minimap"
       }
       vim.cmd("let g:minimap_width = 10")
       vim.cmd("let g:minimap_auto_start = 1")
