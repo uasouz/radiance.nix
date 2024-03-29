@@ -33,6 +33,7 @@
     lm_sensors
     ranger
     hyprshot
+    xwaylandvideobridge
   ]);
 
   programs.direnv = {
