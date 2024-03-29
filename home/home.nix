@@ -84,7 +84,7 @@
        [
          "$mod, Q, killactive"
          "$mod, T, exec, alacritty"
-         "$mod, R, exec, rofi -show drun"
+         "$mod, R, exec, fuzzel"
          "$mod, F, exec, dolphin"
          "$mod, P, exec, hyprshot -m window"
          "$mod, S, pin"

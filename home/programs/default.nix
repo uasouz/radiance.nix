@@ -1,7 +1,8 @@
 {
   imports = [
 #    ./eww
-    ./rofi
+#   ./rofi
+    ./fuzzel
     ./waybar
     ./lunarvim
   ];
