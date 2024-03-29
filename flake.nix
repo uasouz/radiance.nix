@@ -8,6 +8,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
       hyprland.url = "github:hyprwm/Hyprland";
+      devenv.url = "github:cachix/devenv/latest";
       hyprpaper = {
         url = "github:hyprwm/hyprpaper";
         inputs.nixpkgs.follows = "nixpkgs";

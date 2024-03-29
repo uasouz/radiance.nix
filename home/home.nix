@@ -1,4 +1,4 @@
-{pkgs, ...}: let 
+{pkgs,inputs, ...}: let 
     startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
      export HYPRLAND_INSTANCE_SIGNATURE=$(find /tmp/hypr -print0 -name '*.log' | xargs -0 stat -c '%Y %n' - | sort -rn | head -n 1 | cut -d ' ' -f2 | awk -F '/' '{print $4}') 
      export WAYLAND_DISPLAY=$(grep -o "wayland-[0-9]" "$(find /tmp/hypr -print0 -name '*.log' | xargs -0 stat -c '%Y %n' - | sort -rn | head -n 1 | cut -d ' ' -f2)" | head -n 1)
@@ -14,8 +14,11 @@
 
   home.packages = (with pkgs; [
     pkgs.hyprpaper
+    # inputs.devenv.packages."${pkgs.system}".devenv
+    pkgs.cachix
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     git
+    slack
     curl
     rustup
     rustc
@@ -30,6 +33,11 @@
     ranger
     hyprshot
   ]);
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
       preload = ${/. + ./wallpapers/bloodborne.jpg}

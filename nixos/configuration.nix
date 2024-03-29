@@ -148,6 +148,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
      go
+     pkgs.devenv
      pkgs.linuxKernel.packages.linux_xanmod.cpupower
      pkgs.linuxKernel.packages.linux_6_6.zenpower
      pkgs.linuxKernel.packages.linux_6_6.rtl8812au
