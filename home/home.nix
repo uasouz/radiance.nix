@@ -40,8 +40,8 @@
   };
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
-      preload = ${/. + ./wallpapers/bloodborne.jpg}
-      wallpaper = ,${/. + ./wallpapers/bloodborne.jpg}
+      preload = ${/. + ./wallpapers/switch.jpg}
+      wallpaper = ,${/. + ./wallpapers/switch.jpg}
       ipc = off
     '';
 
