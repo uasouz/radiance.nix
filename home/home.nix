@@ -18,6 +18,7 @@
     pkgs.cachix
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     git
+    jetbrains-toolbox
     slack
     curl
     rustup
