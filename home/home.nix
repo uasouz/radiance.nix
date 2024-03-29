@@ -70,6 +70,10 @@
     decoration = {
       rounding = 10;
     };
+    input = {
+        kb_layout = "us";
+        kb_variant = "intl";
+    };
     bindm = [
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
