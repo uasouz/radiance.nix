@@ -34,6 +34,7 @@
     ranger
     hyprshot
     xwaylandvideobridge
+    lxqt.lxqt-policykit
   ]);
 
   programs.direnv = {
@@ -59,6 +60,7 @@
     
        exec-once=systemctl --user mask xdg-desktop-portal-gnome
        exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+       exec-once = lxqt-policykit-agent
 
        exec-once = nm-applet --indicator
        exec-once = $HOME/.local/lib/import_env tmux
