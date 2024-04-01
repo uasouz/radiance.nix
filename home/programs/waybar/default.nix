@@ -14,6 +14,7 @@ in
   programs.mako = {
     enable = true;
     defaultTimeout = 4000;
+    borderRadius = 15;
   };
 
   programs.waybar = {
