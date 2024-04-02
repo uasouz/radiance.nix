@@ -183,4 +183,11 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
+  nix.settings.extra-trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
+  nix.settings.substituters = ["https://devenv.cachix.org"];
+  nix.settings.trusted-substituters = ["https://cache.nixos.org" "https://devenv.cachix.org" ];
+  nix.settings.extra-substituters = ["https://devenv.cachix.org"];
+  nix.settings.trusted-users = ["root" "hadara"];
 }
