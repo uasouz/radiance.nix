@@ -117,6 +117,7 @@
       hyprland
       zenmonitor
       postgresql_16
+      conda
     #  thunderbird
     ];
   };
