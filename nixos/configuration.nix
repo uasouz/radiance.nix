@@ -118,6 +118,7 @@
       zenmonitor
       postgresql_16
       conda
+      hurl
     #  thunderbird
     ];
   };
