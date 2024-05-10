@@ -122,6 +122,7 @@
       httpie
       awscli2
       lens
+      helm
     #  thunderbird
     ];
   };
