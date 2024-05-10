@@ -178,8 +178,8 @@ programs.alacritty = {
     enable = true;
     extraConfig = ''
         # split panes using | and -
-        bind '\' split-window -h
-        bind - split-window -v
+        bind '\' split-window -h -c "{#pane_current_path}"
+        bind - split-window -v -c "{#pane_current_path}"
         unbind '"'
         unbind %
         
@@ -191,6 +191,11 @@ programs.alacritty = {
         bind -n M-Right select-pane -R
         bind -n M-Up select-pane -U
         bind -n M-Down select-pane -D
+        
+        set-window-option -g mode-keys vi
+        bind-key -T copy-mode-vi v send -X begin-selection
+        bind-key -T copy-mode-vi V send -X select-line
+        bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'       
         
         # Enable mouse mode (tmux 2.1 and above)
         set -g mouse on
