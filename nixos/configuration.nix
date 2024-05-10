@@ -119,6 +119,7 @@
       postgresql_16
       conda
       hurl
+      httpie
     #  thunderbird
     ];
   };
