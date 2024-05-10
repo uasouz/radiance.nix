@@ -120,6 +120,7 @@
       conda
       hurl
       httpie
+      awscli2
     #  thunderbird
     ];
   };
