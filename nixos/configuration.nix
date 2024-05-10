@@ -121,6 +121,7 @@
       hurl
       httpie
       awscli2
+      lens
     #  thunderbird
     ];
   };
