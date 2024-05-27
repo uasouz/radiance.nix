@@ -11,7 +11,7 @@ in
   ]);
 
 
-  programs.mako = {
+  services.mako = {
     enable = true;
     defaultTimeout = 4000;
     borderRadius = 15;
