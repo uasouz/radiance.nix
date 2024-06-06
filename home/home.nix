@@ -35,6 +35,7 @@
     hyprshot
     xwaylandvideobridge
     lxqt.lxqt-policykit
+    tmuxp
   ]);
 
   programs.direnv = {
