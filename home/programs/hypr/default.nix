@@ -4,8 +4,8 @@
 # BACKGROUND
 background {
     monitor =
-    path = ${/. + ../../wallpapers/switch_1080p.jpg}
-    blur_passes = 3
+    path = ${/. + ../../wallpapers/switch_1080p.png}
+    blur_passes = 1
     contrast = 0.8916
     brightness = 0.8172
     vibrancy = 0.1696
