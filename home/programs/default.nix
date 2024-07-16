@@ -5,5 +5,6 @@
     ./fuzzel
     ./waybar
     ./lunarvim
+    ./hypr
   ];
 }

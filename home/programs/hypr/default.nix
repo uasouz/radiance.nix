@@ -1,7 +1,10 @@
+{ config, pkgs, ... }: {
+
+  home.file.".config/hypr/hyprlock.conf".text = ''
 # BACKGROUND
 background {
     monitor =
-    path = ~/Pictures/wal.png
+    path = ${/. + ../../wallpapers/switch.jpg}
     blur_passes = 3
     contrast = 0.8916
     brightness = 0.8172
@@ -61,4 +64,5 @@ label {
     halign = center
     valign = center
 }
-
+'';
+}

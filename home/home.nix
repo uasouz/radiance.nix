@@ -51,11 +51,6 @@
       ipc = off
     '';
 
-  home.file.".config/hypr/hyprlock.conf" = {
-    source = ./programs/hypr/hyprlock.conf;
-    force = true;
-  };
-
   home.file.".local/lib/import_env" = {
     source = ./programs/hypr/start.sh;
   };
@@ -92,6 +87,7 @@
     ];
     bind =
        [
+         "$mod, L exec, hyprlock"
          "$mod, Q, killactive"
          "$mod, T, exec, alacritty"
          "$mod, R, exec, fuzzel"
