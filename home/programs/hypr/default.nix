@@ -4,7 +4,7 @@
 # BACKGROUND
 background {
     monitor =
-    path = ${/. + ../../wallpapers/switch.jpg}
+    path = ${/. + ../../wallpapers/switch_1080p.jpg}
     blur_passes = 3
     contrast = 0.8916
     brightness = 0.8172
@@ -31,7 +31,6 @@ input-field {
     inner_color = rgba(0, 0, 0, 0.5)
     font_color = rgb(200, 200, 200)
     fade_on_empty = false
-    font_family = JetBrains Mono Nerd Font Mono
     placeholder_text = <i><span foreground="##cdd6f4">Input Password...</span></i>
     hide_input = false
     position = 0, -120
@@ -43,8 +42,7 @@ input-field {
 label {
     monitor =
     text = cmd[update:1000] echo "$(date +"%-I:%M%p")"
-    color = $foreground
-    #color = rgba(255, 255, 255, 0.6)
+    color = rgba(255, 255, 255, 0.6)
     font_size = 120
     font_family = JetBrains Mono Nerd Font Mono ExtraBold
     position = 0, -300
@@ -56,8 +54,7 @@ label {
 label {
     monitor =
     text = Hi there, $USER
-    color = $foreground
-    #color = rgba(255, 255, 255, 0.6)
+    color = rgba(255, 255, 255, 0.6)
     font_size = 25
     font_family = JetBrains Mono Nerd Font Mono
     position = 0, -40

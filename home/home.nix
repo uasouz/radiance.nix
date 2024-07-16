@@ -38,6 +38,7 @@
     tmuxp
     obsidian
     insomnia
+    btop
   ]);
 
   programs.direnv = {
@@ -87,7 +88,7 @@
     ];
     bind =
        [
-         "$mod, L exec, hyprlock"
+         "$mod, L, exec, hyprlock"
          "$mod, Q, killactive"
          "$mod, T, exec, alacritty"
          "$mod, R, exec, fuzzel"
