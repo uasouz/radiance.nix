@@ -36,6 +36,8 @@
     xwaylandvideobridge
     lxqt.lxqt-policykit
     tmuxp
+    obsidian
+    insomnia
   ]);
 
   programs.direnv = {
@@ -48,6 +50,11 @@
       wallpaper = ,${/. + ./wallpapers/switch.jpg}
       ipc = off
     '';
+
+  home.file.".config/hypr/hyprlock.conf" = {
+    source = ./programs/hypr/hyprlock.conf;
+    force = true;
+  };
 
   home.file.".local/lib/import_env" = {
     source = ./programs/hypr/start.sh;

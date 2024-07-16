@@ -70,8 +70,9 @@
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us";
-    xkb.variant = "intl";
+    xkb.variant = "altgr-intl";
   };
+  console.keyMap = "us-acentos";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -124,12 +125,22 @@
       awscli2
       lens
       helm
+      vlc
     #  thunderbird
     ];
   };
 
   programs.hyprland.enable = true;
 
+  programs.thunar.enable = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   programs.zsh.enable = true;
   users.users.hadara.shell = pkgs.zsh;
@@ -159,6 +170,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
      go
+     hyprlock
      pkgs.devenv
      pkgs.linuxKernel.packages.linux_xanmod.cpupower
      pkgs.linuxKernel.packages.linux_6_6.zenpower

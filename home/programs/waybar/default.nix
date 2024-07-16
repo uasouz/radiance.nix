@@ -15,6 +15,18 @@ in
     enable = true;
     defaultTimeout = 4000;
     borderRadius = 15;
+    borderColor = "#88cd00";
+    extraConfig = ''
+      [urgency=low]
+      border-color=#cccccc
+      
+      [urgency=normal]
+      border-color=#d08770
+      
+      [urgency=high]
+      border-color=#bf616a
+      default-timeout=0
+    '';
   };
 
   programs.waybar = {
