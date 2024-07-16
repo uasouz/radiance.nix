@@ -70,6 +70,7 @@
        exec-once = $HOME/.local/lib/import_env tmux
        exec-once = hyprpaper
        exec-once = waybar
+       exec-once = hyprlock
   '';
 
   wayland.windowManager.hyprland.settings = {
@@ -248,4 +249,5 @@ programs.alacritty = {
       };
     };
   };
+
 }

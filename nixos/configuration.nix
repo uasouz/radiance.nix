@@ -177,6 +177,20 @@
      pkgs.linuxKernel.packages.linux_6_6.rtl8812au
   ];
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "hadara";
+      };
+      default_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "hadara";
+      };
+    };
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
