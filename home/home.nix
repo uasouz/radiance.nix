@@ -39,6 +39,12 @@
     obsidian
     insomnia
     btop
+    godot_4
+    blender
+    elixir_1_15
+    clojure
+    clojure-lsp
+    simplescreenrecorder
   ]);
 
   programs.direnv = {
