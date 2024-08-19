@@ -45,6 +45,10 @@
     clojure
     clojure-lsp
     simplescreenrecorder
+    obs-studio
+    delve
+    wl-clipboard
+    cliphist
   ]);
 
   programs.direnv = {
@@ -76,6 +80,11 @@
        exec-once = $HOME/.local/lib/import_env tmux
        exec-once = hyprpaper
        exec-once = waybar
+
+       exec-once = wl-paste --type text --watch cliphist store
+
+       exec-once = wl-paste --type image --watch cliphist store
+
        exec-once = hyprlock
   '';
 
@@ -108,6 +117,7 @@
          "$mod, right, movefocus, r"
          "$mod, up, movefocus, u"
          "$mod, down, movefocus, d"
+         "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
          "$shiftMod, H, movewindow, l"
          "$shiftMod, J, movewindow, d"
          "$shiftMod, K, movewindow, u"
