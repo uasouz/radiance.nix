@@ -52,6 +52,10 @@
     filelight
     dive
     rye
+    pkgs.python311Packages.python
+    pkgs.python311Packages.pip
+    pkgs.python311Packages.python-lsp-server
+    zed
   ]);
 
   programs.direnv = {
@@ -159,7 +163,7 @@ programs.alacritty = {
         opacity = 0.85;
       };
 
-    shell = {
+    terminal.shell = {
       program = "${pkgs.zsh}/bin/zsh";
       args = ["-lc" "tmux"];
     };
