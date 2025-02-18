@@ -16,7 +16,7 @@
     pkgs.hyprpaper
     # inputs.devenv.packages."${pkgs.system}".devenv
     pkgs.cachix
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.nerd-fonts.jetbrains-mono
     git
     jetbrains-toolbox
     slack
@@ -41,7 +41,7 @@
     btop
     godot_4
     blender
-    elixir_1_15
+    elixir_1_18
     clojure
     clojure-lsp
     simplescreenrecorder
@@ -49,6 +49,9 @@
     delve
     wl-clipboard
     cliphist
+    filelight
+    dive
+    rye
   ]);
 
   programs.direnv = {

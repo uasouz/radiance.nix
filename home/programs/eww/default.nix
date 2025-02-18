@@ -6,7 +6,7 @@ with lib;
     eww
     pamixer
     brightnessctl
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.nerd-fonts.jetbrains-mono
   ];
 
   # configuration

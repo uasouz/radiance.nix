@@ -78,7 +78,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -130,6 +130,11 @@
     #  thunderbird
     ];
   };
+  
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+  services.blueman.enable = true;
 
   programs.hyprland.enable = true;
 
@@ -149,6 +154,8 @@
   environment.sessionVariables.NIXOS_XDG_OPEN_USE_PORTAL = "1";
 
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
+
+  environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
 
 
   programs.steam = {
