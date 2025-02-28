@@ -9,6 +9,7 @@
     code-minimap
     nodejs_22
     ripgrep
+    gnumake
   ]);
 
 

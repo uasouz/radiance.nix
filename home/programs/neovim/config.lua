@@ -24,14 +24,93 @@ local function my_on_attach(bufnr)
 end
 
 require("lazy").setup({
+  -- Tabs
+  {'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+  -- Copilot
+  {
+  "yetone/avante.nvim",
+  event = "VeryLazy",
+  lazy = false,
+  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  opts = {
+    -- add any opts here
+    -- for example
+    provider = "ollama",
+    vendors = {
+      ollama = {
+         __inherited_from = "openai",
+         endpoint = "http://localhost:11434/v1",
+         model = "hhao/qwen2.5-coder-tools", -- your desired model (or use gpt-4o, etc.)
+         timeout = 30000, -- timeout in milliseconds
+         temperature = 0, -- adjust if needed
+         max_tokens = 128000,
+      -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+      },
+    },
+  },
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  build = "make",
+  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    "stevearc/dressing.nvim",
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    --- The below dependencies are optional,
+    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      -- support for image pasting
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- recommended settings
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          -- required for Windows users
+          use_absolute_path = true,
+        },
+      },
+    },
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
+  },
+},
   -- Theme
-  { "navarasu/onedark.nvim",
+  {
+    "navarasu/onedark.nvim",
     config = function()
-
-require('onedark').setup({
-  style = 'deep'
-})
-require('onedark').load()
+      require('onedark').setup({
+        style = 'deep'
+      })
+      require('onedark').load()
     end
   },
   -- File explorer
@@ -51,8 +130,10 @@ require('onedark').load()
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup({ ensure_installed = { "zls","yamlls","rust_analyzer","lua_ls",
-        "ts_ls", "pyright", "gopls","pbls", "prismals", "sqlls", "rnix" } })
+      require("mason-lspconfig").setup({
+        ensure_installed = { "zls", "yamlls", "rust_analyzer", "lua_ls",
+          "ts_ls", "pyright", "gopls", "pbls", "prismals", "sqlls", "rnix" }
+      })
     end
   },
   { "hrsh7th/nvim-cmp",              dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip" } },
@@ -141,42 +222,42 @@ require('onedark').load()
     end
   },
   {
-  "folke/trouble.nvim",
-  opts = {}, -- for default options, refer to the configuration section for custom setup.
-  cmd = "Trouble",
-  keys = {
-    {
-      "<leader>xx",
-      "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Diagnostics (Trouble)",
-    },
-    {
-      "<leader>xX",
-      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Buffer Diagnostics (Trouble)",
-    },
-    {
-      "<leader>cs",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
-      desc = "Symbols (Trouble)",
-    },
-    {
-      "<leader>cl",
-      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
-    {
-      "<leader>xL",
-      "<cmd>Trouble loclist toggle<cr>",
-      desc = "Location List (Trouble)",
-    },
-    {
-      "<leader>xQ",
-      "<cmd>Trouble qflist toggle<cr>",
-      desc = "Quickfix List (Trouble)",
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
     },
   },
-},
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
@@ -219,29 +300,29 @@ require('onedark').load()
       })
     end
   },
-{
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup()
-  end,
-},
-{
-  'stevearc/conform.nvim',
-  opts = {},
-  config = function()
-    require("conform").setup({
-      formatters_by_ft = {
-        lua = { "stylua" },
-        -- Conform will run multiple formatters sequentially
-        python = { "isort", "black" },
-        -- You can customize some of the format options for the filetype (:help conform.format)
-        rust = { "rustfmt", lsp_format = "fallback" },
-        -- Conform will run the first available formatter
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-      },
-    })
-  end
-}
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          -- Conform will run multiple formatters sequentially
+          python = { "isort", "black" },
+          -- You can customize some of the format options for the filetype (:help conform.format)
+          rust = { "rustfmt", lsp_format = "fallback" },
+          -- Conform will run the first available formatter
+          javascript = { "prettierd", "prettier", stop_after_first = true },
+        },
+      })
+    end
+  }
 })
 
 -- General settings
@@ -295,15 +376,51 @@ vim.keymap.set(
 
 -- Code Formatting
 vim.keymap.set("n", "<leader>lf", function()
-    require("conform").format()
+  require("conform").format()
 end, { desc = "Format Code" })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
-    require("conform").format({ bufnr = args.buf})
+    require("conform").format({ bufnr = args.buf })
   end,
 })
+
+
+-- Bar
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<leader>bb', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<leader>bn', '<Cmd>BufferNext<CR>', opts)
+
+-- Re-order to previous/next
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+
+-- Pin/unpin buffer
+map('n', '<leader>p', '<Cmd>BufferPin<CR>', opts)
+
+-- Goto pinned/unpinned buffer
+--                 :BufferGotoPinned
+--                 :BufferGotoUnpinned
+
+-- Close buffer
+map('n', '<leader>c', '<Cmd>BufferClose<CR>', opts)
+
+-- Wipeout buffer
+--                 :BufferWipeout
+
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+
+-- Magic buffer-picking mode
+map('n', '<leader>bj',   '<Cmd>BufferPick<CR>', opts)
 
 -- LSP setup
 local lspconfig = require("lspconfig")

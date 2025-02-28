@@ -237,6 +237,7 @@ programs.alacritty = {
   programs.zsh = {
     shellAliases = {
       zd = "WAYLAND_DISPLAY='' zeditor .";
+      n = "nvim .";
     };
     initExtra = ''
       [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
