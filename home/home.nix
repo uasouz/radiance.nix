@@ -55,7 +55,10 @@
     pkgs.python311Packages.python
     pkgs.python311Packages.pip
     pkgs.python311Packages.python-lsp-server
-    zed
+    zed-editor
+    nordzy-cursor-theme
+    xdg-desktop-portal-gtk
+    amdvlk
   ]);
 
   programs.direnv = {
@@ -232,6 +235,9 @@ programs.alacritty = {
   };
 
   programs.zsh = {
+    shellAliases = {
+      zd = "WAYLAND_DISPLAY='' zeditor .";
+    };
     initExtra = ''
       [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
     '';

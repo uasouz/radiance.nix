@@ -6,5 +6,6 @@
     ./waybar
     ./lunarvim
     ./hypr
+    ./neovim
   ];
 }
