@@ -7,6 +7,8 @@
   home.packages = (with pkgs; [
     neovim
     code-minimap
+    nodejs_22
+    ripgrep
   ]);
 
 
