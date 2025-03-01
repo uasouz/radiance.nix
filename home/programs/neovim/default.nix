@@ -4,6 +4,11 @@
     source = ./config.lua;
     force = true;
   };
+  home.file.".config/nvim/ollama_provider.lua" = {
+    source = ./ollama_provider.lua;
+    force = true;
+  };
+ 
   home.packages = (with pkgs; [
     neovim
     code-minimap

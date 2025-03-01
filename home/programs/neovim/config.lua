@@ -1,3 +1,5 @@
+local ollama = require "ollama_provider"
+
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -25,9 +27,10 @@ end
 
 require("lazy").setup({
   -- Tabs
-  {'romgrk/barbar.nvim',
+  {
+    'romgrk/barbar.nvim',
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
     init = function() vim.g.barbar_auto_setup = false end,
@@ -41,74 +44,76 @@ require("lazy").setup({
   },
   -- Copilot
   {
-  "yetone/avante.nvim",
-  event = "VeryLazy",
-  lazy = false,
-  version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-  opts = {
-    -- add any opts here
-    -- for example
-    provider = "ollama",
-    vendors = {
-      ollama = {
-         __inherited_from = "openai",
-         endpoint = "http://localhost:11434/v1",
-         model = "hhao/qwen2.5-coder-tools", -- your desired model (or use gpt-4o, etc.)
-         timeout = 30000, -- timeout in milliseconds
-         temperature = 0, -- adjust if needed
-         max_tokens = 128000,
-      -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    opts = {
+      -- add any opts here
+      -- for example
+      provider = "ollama",
+      vendors = {
+        ollama = ollama.ollama
+       -- ollama = {
+       --   __inherited_from = "openai",
+       --   endpoint = "http://localhost:11434/v1",
+       --   model = "hhao/qwen2.5-coder-tools", -- your desired model (or use gpt-4o, etc.)
+       --   timeout = 30000,                    -- timeout in milliseconds
+       --   temperature = 0,                    -- adjust if needed
+       --   max_tokens = 128000,
+       --   -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
+       -- },
       },
     },
-  },
-  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = "make",
-  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
-    --- The below dependencies are optional,
-    "echasnovski/mini.pick", -- for file_selector provider mini.pick
-    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-    "ibhagwan/fzf-lua", -- for file_selector provider fzf
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
-    {
-      -- support for image pasting
-      "HakonHarnes/img-clip.nvim",
-      event = "VeryLazy",
-      opts = {
-        -- recommended settings
-        default = {
-          embed_image_as_base64 = false,
-          prompt_for_file_name = false,
-          drag_and_drop = {
-            insert_mode = true,
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
           },
-          -- required for Windows users
-          use_absolute_path = true,
         },
       },
-    },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
-      opts = {
-        file_types = { "markdown", "Avante" },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
       },
-      ft = { "markdown", "Avante" },
     },
   },
-},
   -- Theme
   {
     "navarasu/onedark.nvim",
     config = function()
       require('onedark').setup({
-        style = 'deep'
+        style = 'deep',
+        transparency = true
       })
       require('onedark').load()
     end
@@ -312,7 +317,7 @@ require("lazy").setup({
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          lua = { "stylua" },
+          lua = { "lua_ls" },
           -- Conform will run multiple formatters sequentially
           python = { "isort", "black" },
           -- You can customize some of the format options for the filetype (:help conform.format)
@@ -365,6 +370,8 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnosti
 
 vim.diagnostic.config({
   virtual_text = false,
+  signs = false,
+  underline = false
 })
 
 vim.keymap.set(
@@ -376,7 +383,8 @@ vim.keymap.set(
 
 -- Code Formatting
 vim.keymap.set("n", "<leader>lf", function()
-  require("conform").format()
+  vim.lsp.buf.format({ async = true })
+  -- require("conform").format()
 end, { desc = "Format Code" })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -420,13 +428,27 @@ map('n', '<leader>c', '<Cmd>BufferClose<CR>', opts)
 --                 :BufferCloseBuffersRight
 
 -- Magic buffer-picking mode
-map('n', '<leader>bj',   '<Cmd>BufferPick<CR>', opts)
+map('n', '<leader>bj', '<Cmd>BufferPick<CR>', opts)
 
 -- LSP setup
 local lspconfig = require("lspconfig")
 lspconfig.lua_ls.setup({
   settings = {
     Lua = {
+      telemetry = { enable = false },
+      runtime = {
+        version = "LuaJIT",
+        special = {
+          reload = "require",
+        },
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false, -- Disable annoying popup
+      },
       format = {
         enable = true,
       },
@@ -436,6 +458,18 @@ lspconfig.lua_ls.setup({
 lspconfig.ts_ls.setup({})
 lspconfig.gopls.setup({})
 lspconfig.pyright.setup({})
+
+local lsp = vim.lsp.buf
+
+vim.keymap.set("n", "<space>lD", lsp.type_definition, { desc = "Type Definition" })
+vim.keymap.set("n", "gD", lsp.declaration, { desc = "Go to Declaration" })
+vim.keymap.set("n", "gd", lsp.definition, { desc = "Go to Definition" })
+vim.keymap.set("n", "gr", lsp.references, { desc = "Show References" })
+vim.keymap.set("n", "K", lsp.hover, { desc = "Hover Documentation" })
+vim.keymap.set("n", "<leader>rn", lsp.rename, { desc = "Rename Symbol" })
+vim.keymap.set("n", "<leader>ca", lsp.code_action, { desc = "Code Actions" })
+vim.keymap.set("n", "<space>li", "<cmd>LspInfo<CR>", { desc = "LSP Info" })
+vim.keymap.set("n", "<space>lI", "<cmd>Mason<CR>", { desc = "Mason" })
 
 -- Autocompletion setup
 local cmp = require("cmp")
