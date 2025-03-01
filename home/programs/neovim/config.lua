@@ -335,7 +335,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 
-require('bindings')
+require('bindings')(vim)
 
 -- LSP setup
 local lspconfig = require("lspconfig")

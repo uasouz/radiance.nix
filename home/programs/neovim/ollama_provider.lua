@@ -141,6 +141,7 @@ local function parse_response_without_stream(data, _, handler_opts)
   if json_data then
     if json_data.message then
       local content = json_data.message.content
+        handler_opts.on_chunk(' ')
       if content and content ~= '' then
         handler_opts.on_chunk(content)
       end

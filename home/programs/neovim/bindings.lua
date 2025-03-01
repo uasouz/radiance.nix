@@ -100,3 +100,5 @@ vim.keymap.set("n", "<space>li", "<cmd>LspInfo<CR>", { desc = "LSP Info" })
 vim.keymap.set("n", "<space>lI", "<cmd>Mason<CR>", { desc = "Mason" })
 
 end
+
+return setup_binding
