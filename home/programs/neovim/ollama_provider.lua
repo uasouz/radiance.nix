@@ -130,7 +130,7 @@ local function parse_curl_args(self, code_opts)
       model = self.model,
       messages = messages,
       options = options,
-      tools = tools, -- Optional tool support
+      tools = tools,  -- Optional tool support
       stream = false, -- Keep streaming enabled
     },
   }
@@ -175,9 +175,10 @@ end
 local ollama = {
   api_key_name = '',
   endpoint = 'http://127.0.0.1:11434',
-  model = 'qwen2.5-coder:32b', -- Specify your model here
+  model = 'qwen2.5-coder:7b', -- Specify your model here
+  timeout = 120000,
   options = {
-    num_ctx = 32768,
+    num_ctx = 125000,
   },
   parse_messages = parse_messages,
   parse_curl_args = parse_curl_args,
