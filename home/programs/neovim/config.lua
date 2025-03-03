@@ -55,6 +55,37 @@ require("lazy").setup({
       vendors = {
         ollama = ollama
       },
+      mappings = {
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          all_theirs = "ca",
+          both = "cb",
+          cursor = "cc",
+          next = "]x",
+          prev = "[x",
+        },
+        suggestion = {
+          accept = "<M-l>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        sidebar = {
+          apply_all = "A",
+          apply_cursor = "a",
+          switch_windows = "<Tab>",
+          reverse_switch_windows = "<S-Tab>",
+        },
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -213,8 +244,9 @@ require("lazy").setup({
       })
 
       -- Keybindings
-      vim.keymap.set("n", "<M-3>", function() float_term:toggle() end, { silent = true }) -- Alt+3 for floating terminal
-      vim.keymap.set("n", "<M-2>", function() left_term:toggle() end, { silent = true })  -- Alt+2 for left side terminal
+      vim.keymap.set({ "n", "v", "i" }, "<M-3>", function() float_term:toggle() end, { silent = true }) -- Alt+3 for floating terminal
+
+      vim.keymap.set({ "n", "v", "i" }, "<M-2>", function() left_term:toggle() end, { silent = true })  -- Alt+2 for left side terminal
     end
   },
   {

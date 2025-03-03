@@ -176,10 +176,10 @@ end
 local ollama = {
   api_key_name = '',
   endpoint = 'http://127.0.0.1:11434',
-  model = 'qwen2.5-coder:7b', -- Specify your model here
+  model = 'hhao/qwen2.5-coder-tools', -- Specify your model here
   timeout = 120000,
   options = {
-    num_ctx = 125000,
+    num_ctx = 50000,
   },
   parse_messages = parse_messages,
   parse_curl_args = parse_curl_args,

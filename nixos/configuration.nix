@@ -86,7 +86,7 @@
 
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -113,9 +113,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      nvtop
+      nvtopPackages.full
       cudatoolkit
-      kate
+      kdePackages.kate
       telegram-desktop
       pciutils
       usbutils

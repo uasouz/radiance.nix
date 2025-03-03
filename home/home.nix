@@ -33,7 +33,7 @@
     lm_sensors
     ranger
     hyprshot
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
     lxqt.lxqt-policykit
     tmuxp
     obsidian
@@ -49,16 +49,18 @@
     delve
     wl-clipboard
     cliphist
-    filelight
+    kdePackages.filelight
     dive
     rye
-    pkgs.python311Packages.python
-    pkgs.python311Packages.pip
-    pkgs.python311Packages.python-lsp-server
+    pkgs.python313Packages.python
+    pkgs.python313Packages.pylint
+    pkgs.python313Packages.pip
+    pkgs.python313Packages.python-lsp-server
     zed-editor
     nordzy-cursor-theme
     xdg-desktop-portal-gtk
     amdvlk
+    google-chrome
   ]);
 
   programs.direnv = {
