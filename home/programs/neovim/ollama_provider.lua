@@ -179,7 +179,7 @@ local ollama = {
   model = 'hhao/qwen2.5-coder-tools', -- Specify your model here
   timeout = 120000,
   options = {
-    num_ctx = 50000,
+    num_ctx = 32768,
   },
   parse_messages = parse_messages,
   parse_curl_args = parse_curl_args,

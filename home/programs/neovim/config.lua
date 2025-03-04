@@ -244,9 +244,9 @@ require("lazy").setup({
       })
 
       -- Keybindings
-      vim.keymap.set({ "n", "v", "i" }, "<M-3>", function() float_term:toggle() end, { silent = true }) -- Alt+3 for floating terminal
+      vim.keymap.set({ "n", "v", "t" }, "<M-3>", function() float_term:toggle() end, { silent = true }) -- Alt+3 for floating terminal
 
-      vim.keymap.set({ "n", "v", "i" }, "<M-2>", function() left_term:toggle() end, { silent = true })  -- Alt+2 for left side terminal
+      vim.keymap.set({ "n", "v", "t" }, "<M-2>", function() left_term:toggle() end, { silent = true })  -- Alt+2 for left side terminal
     end
   },
   {

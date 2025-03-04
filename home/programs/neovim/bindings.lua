@@ -3,27 +3,27 @@ function setup_binding(vim)
   vim.g.mapleader = " "
 
   -- Avante
-  vim.keymap.set({ "n", "v", "i" }, "<leader>aa", ":AvanteToggle<CR>", { silent = true })
-  vim.keymap.set({ "n", "v", "i" }, "<leader>ar", ":AvanteRefresh<CR>", { silent = true })
-  vim.keymap.set({ "n", "v", "i" }, "<leader>ae", ":AvanteEdit<CR>", { silent = true })
-  vim.keymap.set({ "n", "v", "i" }, "<leader>ac", ":AvanteChat<CR>", { silent = true })
-  vim.keymap.set({ "n", "v", "i" }, "<leader>a?", ":AvanteSwitchProvider<CR>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<leader>aa", ":AvanteToggle<CR>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<leader>ar", ":AvanteRefresh<CR>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<leader>ae", ":AvanteEdit<CR>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<leader>ac", ":AvanteChat<CR>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<leader>a?", ":AvanteSwitchProvider<CR>", { silent = true })
   -- NvimTree
   vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true }) -- File Explorer
 
   -- Telescope
   vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true }) -- Find Files
-  vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { silent = true }) -- Grep
-  vim.keymap.set("n", "<leader>st", ":Telescope live_grep<CR>", { silent = true }) -- Grep
+  vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { silent = true })  -- Grep
+  vim.keymap.set("n", "<leader>st", ":Telescope live_grep<CR>", { silent = true })  -- Grep
 
   -- Git
   vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { silent = true }) -- Lazygit
 
   -- Navigation
-  vim.keymap.set('n', '<C-l>', function() vim.cmd [[wincmd l]] end) -- move right
-  vim.keymap.set('n', '<C-k>', function() vim.cmd [[wincmd k]] end) -- move up
-  vim.keymap.set('n', '<C-j>', function() vim.cmd [[wincmd j]] end) -- move down
-  vim.keymap.set('n', '<C-h>', function() vim.cmd [[wincmd h]] end) -- move left
+  vim.keymap.set({ "n", "v", "t" }, '<C-l>', function() vim.cmd [[wincmd l]] end) -- move right
+  vim.keymap.set({ "n", "v", "t" }, '<C-k>', function() vim.cmd [[wincmd k]] end) -- move up
+  vim.keymap.set({ "n", "v", "t" }, '<C-j>', function() vim.cmd [[wincmd j]] end) -- move down
+  vim.keymap.set({ "n", "v", "t" }, '<C-h>', function() vim.cmd [[wincmd h]] end) -- move left
 
   -- Diagnostic
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
