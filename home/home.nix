@@ -61,6 +61,9 @@
     xdg-desktop-portal-gtk
     amdvlk
     google-chrome
+    nvidia-container-toolkit
+    protobuf
+    go-protobuf
   ]);
 
   programs.direnv = {

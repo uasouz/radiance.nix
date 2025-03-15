@@ -5,11 +5,6 @@
     force = true;
   };
 
-  home.file.".config/nvim/lua/ollama_provider.lua" = {
-    source = ./ollama_provider.lua;
-    force = true;
-  };
-
   home.file.".config/nvim/lua/bindings.lua" = {
     source = ./bindings.lua;
     force = true;

@@ -1,4 +1,4 @@
-local ollama = require "ollama_provider"
+local providers = require "ollama_provider"
 
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -48,12 +48,22 @@ require("lazy").setup({
     event = "VeryLazy",
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-    debug = true,
     opts = {
-      auto_suggestions_provider = "ollama",
+      auto_suggestions_provider = "qwen",
       provider = "ollama",
+      ollama = {
+        endpoint = 'http://127.0.0.1:11434',
+        model = 'hhao/qwen2.5-coder-tools', -- Specify your model here
+        timeout = 120000,
+        options = {
+          num_ctx = 32768,
+          temperature = 0,
+        },
+        stream = true,
+      },
       vendors = {
-        ollama = ollama
+        qwen = providers.qwen,
+        deepseek = providers.deepseek
       },
       mappings = {
         diff = {
@@ -159,7 +169,7 @@ require("lazy").setup({
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = { "zls", "yamlls", "rust_analyzer",
-          "ts_ls", "pyright", "gopls", "pbls", "prismals", "sqlls", "rnix" }
+          "ts_ls", "pyright", "gopls", "pbls", "prismals", "sqlls", "rnix", "graphql" }
       })
     end
   },
