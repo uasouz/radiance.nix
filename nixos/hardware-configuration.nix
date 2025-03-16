@@ -34,6 +34,9 @@
   # networking.interfaces.enp7s0u6.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  nixpkgs.config.android_sdk.accept_license = true;
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   
   # Nvidia driver to use with RTX 4070 Super

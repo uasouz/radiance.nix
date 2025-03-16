@@ -1,19 +1,19 @@
 {
   description = "Radiance Desktop Flake";
-  inputs = {
-      #nixpkgs.url = "nixpkgs/nixos-23.11";
-      nixpkgs.url = "nixpkgs/nixos-unstable"; 
-      home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-      hyprland.url = "github:hyprwm/Hyprland";
-      devenv.url = "github:cachix/devenv/latest";
-      hyprpaper = {
-        url = "github:hyprwm/hyprpaper";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-  };
+inputs = {
+    #nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable"; 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland.url = "github:hyprwm/Hyprland";
+    devenv.url = "github:cachix/devenv/latest";
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+};
 
   outputs = { self, nixpkgs, home-manager, hyprland, ...}: 
 

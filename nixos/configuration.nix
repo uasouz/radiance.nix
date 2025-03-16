@@ -116,12 +116,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.hadara = {
     isNormalUser = true;
     description = "Vinicius";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" "kvm" ];
     packages = with pkgs; [
       firefox
       nvtopPackages.full
@@ -146,6 +149,7 @@
       lens
       helm
       vlc
+      androidenv.androidPkgs.androidsdk
     # home-manager
     #  thunderbird
     ];
@@ -226,6 +230,8 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.adb.enable = true;
 
   # List services that you want to enable:
 

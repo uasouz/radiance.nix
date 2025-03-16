@@ -1,5 +1,3 @@
-local providers = require "ollama_provider"
-
 -- Ensure lazy.nvim is installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -49,7 +47,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
-      auto_suggestions_provider = "qwen",
+      auto_suggestions_provider = "ollama",
       provider = "ollama",
       ollama = {
         endpoint = 'http://127.0.0.1:11434',
@@ -60,10 +58,6 @@ require("lazy").setup({
           temperature = 0,
         },
         stream = true,
-      },
-      vendors = {
-        qwen = providers.qwen,
-        deepseek = providers.deepseek
       },
       mappings = {
         diff = {
@@ -150,6 +144,14 @@ require("lazy").setup({
       require('onedark').load()
     end
   },
+  { "shortcuts/no-neck-pain.nvim" },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup({})
+    end
+  },
   -- File explorer
   {
     "nvim-tree/nvim-tree.lua",
@@ -163,7 +165,7 @@ require("lazy").setup({
 
   -- LSP + Completion
   { "neovim/nvim-lspconfig" },
-  { "williamboman/mason.nvim", config = true },
+  { "williamboman/mason.nvim",    config = true },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
